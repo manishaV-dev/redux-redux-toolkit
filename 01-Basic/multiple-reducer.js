@@ -1,4 +1,8 @@
 const redux = require("redux");
+const createStore = redux.createStore;
+
+// method for combine multiple reducers
+const combineReducers = redux.combineReducers;
 
 const ORDER_PIZZA = "ORDER_PIZZA";
 const ORDER_BURGER = "ORDER_BURGER";
@@ -51,8 +55,12 @@ const reducerForBurger = (state = initialStateForBurger, action) => {
   }
 };
 
-const createStore = redux.createStore;
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+  pizza: reducerForPizza,
+  burger: reducerForBurger,
+});
+
+const store = createStore(rootReducer);
 
 console.log("Inital State", store.getState());
 
