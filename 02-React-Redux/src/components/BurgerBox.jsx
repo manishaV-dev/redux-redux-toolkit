@@ -14,7 +14,7 @@ function BurgerBox() {
           Number of Burger Buns available -{" "}
           <span className="number">{burgerBuns}</span>{" "}
         </h2>
-        <button className="btn" onClick={() => dispatch(orderBurger)}>
+        <button className="btn" onClick={() => dispatch(orderBurger())}>
           Order Burger
         </button>
       </div>
