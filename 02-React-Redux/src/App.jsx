@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import store from "./components/redux/store";
 // import HooksPizza from "./components/HooksPizza";
 // import BurgerBox from "./components/BurgerBox";
-import CustomerChoice from "./components/CustomerChoice";
+// import CustomerChoice from "./components/CustomerChoice";
+import CustomerChoiceAlert from "./components/CustomerChoiceAlert";
 
 function App() {
   return (
@@ -18,7 +19,11 @@ function App() {
         {/* <BurgerBox /> */}
 
 {/* ---------- Example of action payload, where customer choose the number of buns and decrease it */}
-        <CustomerChoice />
+        {/* <CustomerChoice /> */}
+
+{/* ---------- Example of action payload, where if input number is greater than available buns then show alert */}
+
+        <CustomerChoiceAlert />
 
       </Provider>
     </>
