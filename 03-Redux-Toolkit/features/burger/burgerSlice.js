@@ -1,3 +1,5 @@
+const { pizzaActions } = require("../pizza/pizzSlice");
+
 const createSlice = require("@reduxjs/toolkit").createSlice;
 
 const initialState = {
@@ -11,6 +13,12 @@ const burgerSlice = createSlice({
     burger_order: (state) => {
       state.burgerBuns--;
     },
+  },
+//   here we want that when someone order a pizza we give them a burger
+  extraReducers: (builder) => {
+    builder.addCase(pizzaActions.pizza_order, (state) => {
+      state.burgerBuns--;
+    });
   },
 });
 
