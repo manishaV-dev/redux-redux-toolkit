@@ -11,8 +11,12 @@ const pizzaSlice = createSlice({
     pizza_order: (state) => {
       state.pizzaBase--;
     },
+    customer_choice: (state, action) => {
+      // state.pizzaBase = state.pizzaBase - action.payload;
+      state.pizzaBase -= action.payload;
+    },
   },
 });
 
 export default pizzaSlice.reducer;
-export const { pizza_order } = pizzaSlice.actions;
+export const { pizza_order, customer_choice } = pizzaSlice.actions;
