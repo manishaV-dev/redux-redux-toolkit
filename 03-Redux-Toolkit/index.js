@@ -6,7 +6,7 @@ const { fetchProdcuts } = require("./features/products/productSlice");
 console.log("Initial State", store.getState()); // Initial State { pizza: { pizzaBase: 1000 } }
 
 const unsubscribe = store.subscribe(() => {
-  //   console.log("Update state", store.getState());
+    console.log("Update state", store.getState());
   // to see logger middleware
 });
 
