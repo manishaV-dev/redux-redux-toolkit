@@ -11,9 +11,7 @@ const initialState = {
 const fetchProdcuts = createAsyncThunk("product/fetchProdcuts", () => {
   return axios
     .get("https://fakestoreapi.com/products")
-    .then((res) =>
-      console.log(res.data.map((productData) => productData.title))
-    );
+    .then((res) => res.data.map((productData) => productData.title));
 });
 
 const productSlice = createSlice({
