@@ -14,8 +14,10 @@ const todoSlice = createSlice({
         todo.text = newText;
       }
     },
-    deleteTodo: (state, action) => {},
-    deleteAllTodo: () => {},
+    deleteTodo: (state, action) => {
+      return state.filter((todo) => todo.id !== action.payload);
+    },
+    deleteAllTodo: () => [], // return initialState
   },
 });
 

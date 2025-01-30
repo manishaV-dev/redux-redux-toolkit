@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "./todoSlice";
+import { addTodo, deleteAllTodo } from "./todoSlice";
 
 const AddTodo = () => {
   const [task, setTask] = useState("");
@@ -24,7 +24,7 @@ const AddTodo = () => {
           onChange={(e) => setTask(e.target.value)}
         />
         <button onClick={handleAddTask}>Add Task</button>
-        <button>Delete All</button>
+        <button onClick={() => dispatch(deleteAllTodo())}>Delete All</button>
       </div>
     </>
   );

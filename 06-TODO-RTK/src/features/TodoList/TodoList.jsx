@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTodo } from "./todoSlice";
+import { deleteTodo, updateTodo } from "./todoSlice";
 
 const TodoList = () => {
   const todos = useSelector((state) => state.todos);
@@ -16,9 +16,11 @@ const TodoList = () => {
   };
 
   const handleSaveClick = (id) => {
-    dispatch(updateTodo({ newId: id, newText: editText }));
-    setEditId(null);
-    setEditText("");
+    if (editText.trim()) {
+      dispatch(updateTodo({ newId: id, newText: editText }));
+      setEditId(null);
+      setEditText("");
+    }
   };
 
   return (
@@ -44,7 +46,12 @@ const TodoList = () => {
                 </button>
               </>
             )}
-            <button className="delete-btn">Delete</button>
+            <button
+              className="delete-btn"
+              onClick={() => dispatch(deleteTodo(todo.id))}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
