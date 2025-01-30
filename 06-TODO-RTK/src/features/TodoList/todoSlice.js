@@ -4,7 +4,9 @@ const todoSlice = createSlice({
   name: "todos",
   initialState: [],
   reducers: {
-    addTodo: (state, action) => {},
+    addTodo: (state, action) => {
+      state.push({ id: Date.now(), text: action.payload });
+    },
     updateTodo: (state, action) => {},
     deleteTodo: (state, action) => {},
     deleteAllTodo: () => {},
