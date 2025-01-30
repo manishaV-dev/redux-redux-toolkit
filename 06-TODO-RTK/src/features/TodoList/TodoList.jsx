@@ -1,14 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateTodo } from "./todoSlice";
 
 const TodoList = () => {
+  const todos = useSelector((state) => state.todos);
+  //   console.log(todos);
+  const dispatch = useDispatch();
+
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState("");
+
+  const handleEditClick = (id, currentText) => {
+    setEditId(id);
+    setEditText(currentText);
+  };
+
+  const handleSaveClick = (id) => {
+    dispatch(updateTodo({ newId: id, newText: editText }));
+    setEditId(null);
+    setEditText("");
+  };
+
   return (
     <>
       <div className="todo-list">
-        <div className="todo-item">
-          <span>Pack Bag</span>
-          <button>Edit</button>
-          <button className="delete-btn">Delete</button>
-        </div>
+        {/* {editId} {editText} */}
+        {todos.map((todo) => (
+          <div className="todo-item" key={todo.id}>
+            {editId === todo.id ? (
+              <>
+                <input
+                  type="text"
+                  value={editText}
+                  onChange={(e) => setEditText(e.target.value)}
+                />
+                <button onClick={() => handleSaveClick(todo.id)}>Save</button>
+              </>
+            ) : (
+              <>
+                <span>{todo.text}</span>
+                <button onClick={() => handleEditClick(todo.id, todo.text)}>
+                  Edit
+                </button>
+              </>
+            )}
+            <button className="delete-btn">Delete</button>
+          </div>
+        ))}
       </div>
     </>
   );

@@ -7,8 +7,11 @@ const AddTodo = () => {
   const dispatch = useDispatch();
 
   const handleAddTask = () => {
-    dispatch(addTodo(task));
-    setTask("")
+    if (task.trim()) {
+      // means if we add empty task then empty obj should not be added
+      dispatch(addTodo(task));
+      setTask("");
+    }
   };
 
   return (
