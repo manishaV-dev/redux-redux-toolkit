@@ -1,10 +1,16 @@
 import React from "react";
-import Navbar from "./Navbar";
 
 const ProductList = () => {
   return (
     <>
-      <h1>hii</h1>
+      <div className="product-list">
+        <div className="product-card">
+          <img src="" alt="" />
+          <h2>Product Title</h2>
+          <p>Price: $200</p>
+          <button>Add to card</button>
+        </div>
+      </div>
     </>
   );
 };

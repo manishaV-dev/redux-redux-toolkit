@@ -8,9 +8,9 @@ body {
   font-family: 'Amazon Ember', Arial, sans-serif;
   color: #b3b3b3;
   line-height: 1.6;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 nav {
@@ -176,6 +176,12 @@ nav a:hover {
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
+}
+
+.wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Responsive Design */
