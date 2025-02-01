@@ -18,13 +18,13 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProdcuts.pending, (state) => {
-        state.status = "Loading...";
+        state.status = "loading";
       })
       .addCase(fetchProdcuts.fulfilled, (state, action) => {
-        (state.status = "Succeeded"), (state.items = action.payload);
+        (state.status = "succeeded"), (state.items = action.payload);
       })
       .addCase(fetchProdcuts.rejected, (state) => {
-        state.status = "Failed";
+        state.status = "failed";
       });
   },
 });

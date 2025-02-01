@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchProdcuts } from "../features/ShopCart/productSlice";
 
 const ProductList = () => {
-  const [products, setProdcucts] = useState([]);
+  // const [products, setProdcucts] = useState([]);
+
+  const { items: products, status } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) {
-          throw new Error("Network Error");
-        }
-        const data = await response.json();
-        setProdcucts(data);
-      } catch (error) {
-        console.log("Error Fethcing Data", error);
-      }
-    };
-    fetchProducts();
-  }, []);
+    if (status === "idle") {
+      dispatch(fetchProdcuts());
+    }
+  }, [status]);
+
+  if (status === "loading") return <p>Loading...</p>;
+  if (status === "failed")
+    return <p>Failed to load products,please try again</p>;
+
   return (
     <>
       <div className="product-list">
