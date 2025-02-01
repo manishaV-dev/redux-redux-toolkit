@@ -24,8 +24,12 @@ const ProductList = () => {
         {products.length > 0 ? (
           products.map((product) => (
             <div className="product-card" key={product.id}>
-              <img src={product.image} alt="" />
-              <h2>{product.title}</h2>
+              <img src={product.image} alt={product.title} />
+              <h2>
+                {product.title.length > 20
+                  ? `${product.title.slice(0, 20)}...`
+                  : product.title}
+              </h2>
               <p>Price: ${product.price}</p>
               <button>Add to card</button>
             </div>
