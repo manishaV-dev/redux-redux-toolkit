@@ -21,6 +21,10 @@ nav {
   align-items: center;
   padding: 1rem 5%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
 }
 
 nav h1 {
@@ -49,6 +53,8 @@ nav a:hover {
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   padding: 2rem 5%;
+  position: relative;
+  margin-top: 6rem;
 }
 
 .product-card {
@@ -76,6 +82,7 @@ nav a:hover {
   margin-bottom: 0.5rem;
   height: 2.5rem;
   overflow: hidden;
+  color: #4f4f4f;
 }
 
 .product-card p {
@@ -104,28 +111,14 @@ nav a:hover {
   width: 800px;
 }
 
-.cart-container,
-.cart-empty {
+.cart-container {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   width: 100%;
+  position: relative;
   max-width: 800px;
-}
-
-.cart-empty {
-  text-align: center;
-}
-
-.cart-empty button {
-  background-color: #dc5f00;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 1rem;
 }
 
 .cart-item {
@@ -145,6 +138,20 @@ nav a:hover {
 
 .cart-item-details {
   flex-grow: 1;
+}
+
+.cart-item-details h3 {
+  font-size: 15px;
+  color: #3f3f3f;
+}
+
+.cart-total p {
+  color: #413e6e;
+}
+
+.cart-item-details p {
+  color: gray;
+  margin-bottom: 10px;
 }
 
 .cart-item-details input {
@@ -185,6 +192,7 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 6rem;
 }
 
 .empty-cart {
