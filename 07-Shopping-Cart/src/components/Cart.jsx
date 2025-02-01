@@ -27,11 +27,14 @@ const Cart = () => {
     dispatch(updateTempQuantity({ id, quantity }));
   };
 
-  const handleApplyUpdates = () => {
-    tempItems.forEach((item) => {
-      // console.log(item)
-      dispatch(applyTempUpdates(item.id));
-    });
+  const handleApplyUpdates = (id) => {
+    // logic for update all button
+    // tempItems.forEach((item) => {
+    //   dispatch(applyTempUpdates(item.id));
+    // });
+
+    // this is for if we update 2 product quantity and click on one of the product it only update the particular quantity plus total price
+    dispatch(applyTempUpdates(id));
   };
 
   return (
@@ -63,7 +66,9 @@ const Cart = () => {
                           )
                         }
                       />
-                      <button onClick={handleApplyUpdates}>Update</button>
+                      <button onClick={() => handleApplyUpdates(item.id)}>
+                        Update
+                      </button>
                       <button onClick={() => handleRemoveItem(item.id)}>
                         Remove
                       </button>
