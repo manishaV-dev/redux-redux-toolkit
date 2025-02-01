@@ -184,6 +184,11 @@ nav a:hover {
   justify-content: center;
 }
 
+.empty-cart{
+  text-align: center;
+  margin: 20px 30px;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 1200px) {
   .product-list {

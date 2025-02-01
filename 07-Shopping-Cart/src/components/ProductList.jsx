@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProdcuts } from "../features/ShopCart/productSlice";
+import { addToCart } from "../features/ShopCart/cartSlice";
 
 const ProductList = () => {
   // const [products, setProdcucts] = useState([]);
@@ -31,7 +32,8 @@ const ProductList = () => {
                   : product.title}
               </h2>
               <p>Price: ${product.price}</p>
-              <button>Add to card</button>
+              {/* <button onClick={() => dispatch(addToCart(product.id))}>Add to card</button> */}
+              <button onClick={() => dispatch(addToCart(product))}>Add to card</button>
             </div>
           ))
         ) : (
