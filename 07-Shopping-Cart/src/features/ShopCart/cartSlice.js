@@ -29,12 +29,55 @@ const cartSlice = createSlice({
       );
     },
 
-    removeFromCard: (state, action) => {
+    removeFromCart: (state, action) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
       state.tempItems = [...state.items];
+      //   total price
+      state.totalPrice = state.items.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
+    },
+
+    // updateTempQuantity: (state, action) => {
+    //   const tempItem = state.tempItems.find(
+    //     (item) => item.id === action.payload.id
+    //   );
+    //   if (tempItem) {
+    //     tempItem.quantity = action.payload.quantity;  // action.payload.quantity;-- whatever value typed in input value that value assigned to tempItem.quantity
+    //   }
+    // },
+
+    updateTempQuantity: (state, action) => {
+      state.tempItems = state.tempItems.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, quantity: action.payload.quantity } // Ensure immutability
+          : item
+      );
+    },
+
+    applyTempUpdates: (state, action) => {
+      const tempItem = state.tempItems.find(
+        (item) => item.id === action.payload
+      );
+      const cartItem = state.items.find((item) => item.id === action.payload);
+      if (tempItem && cartItem) {
+        // making tempItem quantity equal to original items so if we update the quantity on tempItems it also reflect to original items
+        cartItem.quantity = tempItem.quantity;
+      }
+      //   total price
+      state.totalPrice = state.items.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
     },
   },
 });
 
 export default cartSlice.reducer;
-export const { addToCart, removeFromCard } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  updateTempQuantity,
+  applyTempUpdates,
+} = cartSlice.actions;

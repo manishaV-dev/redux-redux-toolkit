@@ -1,7 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeFromCard } from "../features/ShopCart/cartSlice";
+import {
+  applyTempUpdates,
+  removeFromCart,
+  updateTempQuantity,
+} from "../features/ShopCart/cartSlice";
 
 const Cart = () => {
   const {
@@ -15,7 +19,19 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const handleRemoveItem = (id) => {
-    dispatch(removeFromCard(id));
+    dispatch(removeFromCart(id));
+  };
+
+  const handleUpdateQuantity = (id, quantity) => {
+    // console.log(id, quantity);
+    dispatch(updateTempQuantity({ id, quantity }));
+  };
+
+  const handleApplyUpdates = () => {
+    tempItems.forEach((item) => {
+      // console.log(item)
+      dispatch(applyTempUpdates(item.id));
+    });
   };
 
   return (
@@ -31,10 +47,23 @@ const Cart = () => {
                   <img src={item.image} alt={item.title} />
                   <div className="cart-item-details">
                     <h3>{item.title}</h3>
-                    <p>Price: ${item.price}</p>
+                    <p>Price: ${item.price.toFixed(2)}</p>
                     <div>
-                      <input type="number" min="1" />
-                      <button>Update</button>
+                      <input
+                        type="number"
+                        min="1"
+                        value={
+                          tempItems.find((tempItem) => tempItem.id === item.id)
+                            ?.quantity || item.quantity
+                        }
+                        onChange={(e) =>
+                          handleUpdateQuantity(
+                            item.id,
+                            parseInt(e.target.value)
+                          )
+                        }
+                      />
+                      <button onClick={handleApplyUpdates}>Update</button>
                       <button onClick={() => handleRemoveItem(item.id)}>
                         Remove
                       </button>
@@ -42,16 +71,16 @@ const Cart = () => {
                   </div>
                 </div>
               ))}
-
-              <div className="cart-total">
-                <p>Total: ${totalPrice}</p>
-              </div>
             </>
           ) : (
             <div className="empty-cart">
               There's nothing in your bag 😥, Let's add some items
             </div>
           )}
+
+          <div className="cart-total">
+            <p>Total: ${totalPrice.toFixed(2)} </p>
+          </div>
 
           <button className="back-button" onClick={() => navigate("/")}>
             Back to shopping

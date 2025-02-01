@@ -31,7 +31,7 @@ const ProductList = () => {
                   ? `${product.title.slice(0, 20)}...`
                   : product.title}
               </h2>
-              <p>Price: ${product.price}</p>
+              <p>Price: ${product.price.toFixed(2)}</p>
               {/* <button onClick={() => dispatch(addToCart(product.id))}>Add to card</button> */}
               <button onClick={() => dispatch(addToCart(product))}>Add to card</button>
             </div>
